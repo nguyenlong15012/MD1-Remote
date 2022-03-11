@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  class tiVi{
+    constructor(channel, volume, status) {
+      this.channel = channel;
+      this.volume = volume;
+      this.status = status;
+    }
+
+    getChannel(){
+      return this.channel;
+    }
+
+    setChannel(channel){
+      this.channel = channel;
+    }
+
+    getVolume(){
+      return this.volume;
+    }
+
+    setVolume(volume){
+      this.volume = volume;
+    }
+
+    getStatus(){
+      return this.status;
+    }
+
+    setStatus(status){
+      this.status = status;
+    }
+  }
+
+  class Remote{
+    turnOn(tiVi){
+      tiVi.setStatus(!tiVi.getStatus());
+    }
+    changeChannel(tiVi,channel){
+        if (tiVi.getStatus()){
+            tiVi.setChannel(channel);
+        }else {
+            console.log('Ban chua bat TiVi');
+        }
+    }
+
+    upVolume(tiVi){
+        if (tiVi.getStatus()){
+            if (tiVi.getVolume()<10){
+                tiVi.setVolume(tiVi.getVolume()+1);
+            }else {
+                console.log('Âm lượng tối đa là 10!');
+            }
+        }else {
+            console.log('Bạn chưa bật TV!');
+        }
+    }
+
+    downVolume(tiVi){
+        if (tiVi.getStatus()){
+            if (tiVi.getVolume()>0){
+                tiVi.setVolume(tiVi.getVolume()-1);
+            }else {
+                console.log('Âm lượng tối thiểu là 0');
+            }
+        }else {
+            console.log('Bạn chưa bật TV');
+        }
+    }
+  }
+
+  let rm = new Remote();
+  let tv = new tiVi(2,8, false);
+  let LGD = new tiVi(3, 5, false);
+</script>
+</body>
+</html>
